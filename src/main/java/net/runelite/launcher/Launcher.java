@@ -457,7 +457,7 @@ public class Launcher
 		signatureConn.setRequestProperty("User-Agent", USER_AGENT);
 
 		try (InputStream i = conn.getInputStream();
-			 InputStream signatureIn = signatureConn.getInputStream())
+			InputStream signatureIn = signatureConn.getInputStream())
 		{
 			byte[] bytes = ByteStreams.toByteArray(i);
 			byte[] signature = ByteStreams.toByteArray(signatureIn);
