@@ -486,7 +486,7 @@ public class Launcher
 		if (launcherTooOld)
 		{
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog("Your launcher is too old to start BoomScape. Please download and install a more " +
+				new FatalErrorDialog("Your launcher is too old to start up BoomScape. Please download and install a more " +
 					"recent one from Boom-Scape.com.")
 					.addButton("Boom-Scape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
 					.open());
