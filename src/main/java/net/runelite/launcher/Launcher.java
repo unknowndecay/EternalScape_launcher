@@ -456,8 +456,21 @@ public class Launcher
 		conn.setRequestProperty("User-Agent", USER_AGENT);
 		signatureConn.setRequestProperty("User-Agent", USER_AGENT);
 
-		try (InputStream i = conn.getInputStream()) {
+		try (InputStream i = conn.getInputStream();
+			 InputStream signatureIn = signatureConn.getInputStream())
+		{
 			byte[] bytes = ByteStreams.toByteArray(i);
+			byte[] signature = ByteStreams.toByteArray(signatureIn);
+
+			Certificate certificate = getCertificate();
+			Signature s = Signature.getInstance("SHA256withRSA");
+			s.initVerify(certificate);
+			s.update(bytes);
+
+			if (!s.verify(signature))
+			{
+				throw new VerificationException("Unable to verify bootstrap signature");
+			}
 
 			Gson g = new Gson();
 			return g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class);
@@ -486,7 +499,7 @@ public class Launcher
 		if (launcherTooOld)
 		{
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog("Your launcher is too old to start up BoomScape. Please download and install a more " +
+				new FatalErrorDialog("Your launcher is too old to start BoomScape. Please download and install a more " +
 					"recent one from Boom-Scape.com.")
 					.addButton("Boom-Scape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
 					.open());
