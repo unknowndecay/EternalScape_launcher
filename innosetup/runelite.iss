@@ -1,10 +1,10 @@
 [Setup]
-AppName=RuneLite Launcher
-AppPublisher=RuneLite
-UninstallDisplayName=RuneLite
+AppName=BoomScape Launcher
+AppPublisher=BoomScape
+UninstallDisplayName=BoomScape
 AppVersion=${project.version}
-AppSupportURL=https://runelite.net/
-DefaultDirName={localappdata}\RuneLite
+AppSupportURL=https://boom-scape.com/
+DefaultDirName={localappdata}\BoomScape
 
 ; ~30 mb for the repo the launcher downloads
 ExtraDiskSpaceRequired=30000000
@@ -13,40 +13,40 @@ PrivilegesRequired=lowest
 
 WizardSmallImageFile=${basedir}/innosetup/runelite_small.bmp
 SetupIconFile=${basedir}/runelite.ico
-UninstallDisplayIcon={app}\RuneLite.exe
+UninstallDisplayIcon={app}\BoomScape.exe
 
 Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${basedir}
-OutputBaseFilename=RuneLiteSetup
+OutputBaseFilename=BoomScapeSetup
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";
 
 [Files]
-Source: "${basedir}\build\win-x64\RuneLite.exe"; DestDir: "{app}"
-Source: "${basedir}\build\win-x64\RuneLite.jar"; DestDir: "{app}"
+Source: "${basedir}\build\win-x64\BoomScape.exe"; DestDir: "{app}"
+Source: "${basedir}\build\win-x64\BoomScape.jar"; DestDir: "{app}"
 Source: "${basedir}\build\win-x64\launcher_amd64.dll"; DestDir: "{app}"
 Source: "${basedir}\build\win-x64\config.json"; DestDir: "{app}"
 Source: "${basedir}\build\win-x64\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs
 
 [Icons]
 ; start menu
-Name: "{userprograms}\RuneLite\RuneLite"; Filename: "{app}\RuneLite.exe"
-Name: "{userprograms}\RuneLite\RuneLite (configure)"; Filename: "{app}\RuneLite.exe"; Parameters: "--configure"
-Name: "{userprograms}\RuneLite\RuneLite (safe mode)"; Filename: "{app}\RuneLite.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\RuneLite"; Filename: "{app}\RuneLite.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\BoomScape\BoomScape"; Filename: "{app}\BoomScape.exe"
+Name: "{userprograms}\BoomScape\BoomScape (configure)"; Filename: "{app}\BoomScape.exe"; Parameters: "--configure"
+Name: "{userprograms}\BoomScape\BoomScape (safe mode)"; Filename: "{app}\BoomScape.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\BoomScape"; Filename: "{app}\BoomScape.exe"; Tasks: DesktopIcon
 
 [Run]
-Filename: "{app}\RuneLite.exe"; Parameters: "--postinstall"; Flags: nowait
-Filename: "{app}\RuneLite.exe"; Description: "&Open RuneLite"; Flags: postinstall skipifsilent nowait
+Filename: "{app}\BoomScape.exe"; Parameters: "--postinstall"; Flags: nowait
+Filename: "{app}\BoomScape.exe"; Description: "&Open BoomScape"; Flags: postinstall skipifsilent nowait
 
 [InstallDelete]
 ; Delete the old jvm so it doesn't try to load old stuff with the new vm and crash
 Type: filesandordirs; Name: "{app}\jre"
 ; previous shortcut
-Type: files; Name: "{userprograms}\RuneLite.lnk"
+Type: files; Name: "{userprograms}\BoomScape.lnk"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{%USERPROFILE}\.runelite\repository2"

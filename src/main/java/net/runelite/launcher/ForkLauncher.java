@@ -87,8 +87,8 @@ class ForkLauncher
 			case MacOS:
 				path = Paths.get(current.info().command().get());
 				// on macOS packr changes the cwd to the resource directory prior to launching the JVM,
-				// causing current.info().command() to return /Applications/RuneLite.app/Contents/Resources/./RuneLite
-				// despite the executable really being at /Applications/RuneLite.app/Contents/MacOS/RuneLite
+				// causing current.info().command() to return /Applications/BoomScape.app/Contents/Resources/./BoomScape
+				// despite the executable really being at /Applications/BoomScape.app/Contents/MacOS/BoomScape
 				path = path.normalize()
 					.resolveSibling(Path.of("..", "MacOS", path.getFileName().toString()))
 					.normalize();

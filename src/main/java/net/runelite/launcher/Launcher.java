@@ -88,13 +88,13 @@ import org.slf4j.LoggerFactory;
 @Slf4j
 public class Launcher
 {
-	private static final File RUNELITE_DIR = new File(System.getProperty("user.home"), ".runelite");
+	private static final File RUNELITE_DIR = new File(System.getProperty("user.home"), ".boomscape");
 	public static final File LOGS_DIR = new File(RUNELITE_DIR, "logs");
 	private static final File REPO_DIR = new File(RUNELITE_DIR, "repository2");
 	public static final File CRASH_FILES = new File(LOGS_DIR, "jvm_crash_pid_%p.log");
-	private static final String USER_AGENT = "RuneLite/" + LauncherProperties.getVersion();
-	static final String LAUNCHER_EXECUTABLE_NAME_WIN = "RuneLite.exe";
-	static final String LAUNCHER_EXECUTABLE_NAME_OSX = "RuneLite";
+	private static final String USER_AGENT = "BoomScape/" + LauncherProperties.getVersion();
+	static final String LAUNCHER_EXECUTABLE_NAME_WIN = "BoomScape.exe";
+	static final String LAUNCHER_EXECUTABLE_NAME_OSX = "BoomScape";
 
 	public static void main(String[] args)
 	{
@@ -135,7 +135,7 @@ public class Launcher
 		{
 			log.error("unable to parse arguments", ex);
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog("RuneLite was unable to parse the provided application arguments: " + ex.getMessage())
+				new FatalErrorDialog("BoomScape was unable to parse the provided application arguments: " + ex.getMessage())
 					.open());
 			throw ex;
 		}
@@ -203,7 +203,7 @@ public class Launcher
 			final Map<String, String> jvmProps = new LinkedHashMap<>();
 			if (settings.scale != null)
 			{
-				// This calls SetProcessDPIAware(). Since the RuneLite.exe manifest is DPI unaware
+				// This calls SetProcessDPIAware(). Since the BoomScape.exe manifest is DPI unaware
 				// Windows will scale the application if this isn't called. Thus the default scaling
 				// mode is Windows scaling due to being DPI unaware.
 				// https://docs.microsoft.com/en-us/windows/win32/hidpi/high-dpi-desktop-application-development-on-windows
@@ -233,7 +233,7 @@ public class Launcher
 				jvmProps.put("runelite.insecure-skip-tls-verification", "true");
 			}
 
-			log.info("RuneLite Launcher version {}", LauncherProperties.getVersion());
+			log.info("BoomScape Launcher version {}", LauncherProperties.getVersion());
 			log.info("Launcher configuration:" + System.lineSeparator() + "{}", settings.configurationStr());
 			log.info("OS name: {}, version: {}, arch: {}", System.getProperty("os.name"), System.getProperty("os.version"), System.getProperty("os.arch"));
 			log.info("Using hardware acceleration mode: {}", hardwareAccelMode);
@@ -318,7 +318,7 @@ public class Launcher
 			if (!REPO_DIR.exists() && !REPO_DIR.mkdirs())
 			{
 				log.error("unable to create repo directory {}", REPO_DIR);
-				SwingUtilities.invokeLater(() -> new FatalErrorDialog("Unable to create RuneLite directory " + REPO_DIR.getAbsolutePath() + ". Check your filesystem permissions are correct.").open());
+				SwingUtilities.invokeLater(() -> new FatalErrorDialog("Unable to create BoomScape directory " + REPO_DIR.getAbsolutePath() + ". Check your filesystem permissions are correct.").open());
 				return;
 			}
 
@@ -421,7 +421,7 @@ public class Launcher
 			if (!postInstall)
 			{
 				SwingUtilities.invokeLater(() ->
-					new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
+					new FatalErrorDialog("BoomScape has encountered an unexpected error during startup.")
 						.open());
 			}
 		}
@@ -456,21 +456,8 @@ public class Launcher
 		conn.setRequestProperty("User-Agent", USER_AGENT);
 		signatureConn.setRequestProperty("User-Agent", USER_AGENT);
 
-		try (InputStream i = conn.getInputStream();
-			InputStream signatureIn = signatureConn.getInputStream())
-		{
+		try (InputStream i = conn.getInputStream()) {
 			byte[] bytes = ByteStreams.toByteArray(i);
-			byte[] signature = ByteStreams.toByteArray(signatureIn);
-
-			Certificate certificate = getCertificate();
-			Signature s = Signature.getInstance("SHA256withRSA");
-			s.initVerify(certificate);
-			s.update(bytes);
-
-			if (!s.verify(signature))
-			{
-				throw new VerificationException("Unable to verify bootstrap signature");
-			}
 
 			Gson g = new Gson();
 			return g.fromJson(new InputStreamReader(new ByteArrayInputStream(bytes)), Bootstrap.class);
@@ -499,19 +486,19 @@ public class Launcher
 		if (launcherTooOld)
 		{
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog("Your launcher is too old to start RuneLite. Please download and install a more " +
-					"recent one from RuneLite.net.")
-					.addButton("RuneLite.net", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
+				new FatalErrorDialog("Your launcher is too old to start BoomScape. Please download and install a more " +
+					"recent one from Boom-Scape.com.")
+					.addButton("Boom-Scape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
 					.open());
 			return true;
 		}
 		if (jvmTooOld)
 		{
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog("Your Java installation is too old. RuneLite now requires Java " +
-					bootstrap.getRequiredJVMVersion() + " to run. You can get a platform specific version from RuneLite.net," +
+				new FatalErrorDialog("Your Java installation is too old. BoomScape now requires Java " +
+					bootstrap.getRequiredJVMVersion() + " to run. You can get a platform specific version from Boom-Scape.com," +
 					" or install a newer version of Java.")
-					.addButton("RuneLite.net", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
+					.addButton("Boom-Scape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
 					.open());
 			return true;
 		}

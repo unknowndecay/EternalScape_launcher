@@ -75,7 +75,7 @@ public class SplashScreen extends JFrame implements ActionListener
 			logo = ImageIO.read(in);
 		}
 
-		setTitle("RuneLite Launcher");
+		setTitle("BoomScape Launcher");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);

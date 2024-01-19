@@ -68,7 +68,7 @@ class ReflectionLauncher
 				log.error("Unable to launch client", ex);
 			}
 		});
-		thread.setName("RuneLite");
+		thread.setName("BoomScape");
 		thread.start();
 	}
 }
