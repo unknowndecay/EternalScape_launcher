@@ -1,10 +1,10 @@
 [Setup]
-AppName=BoomScape Launcher
-AppPublisher=BoomScape
-UninstallDisplayName=BoomScape
+AppName=EternalScape Launcher
+AppPublisher=EternalScape
+UninstallDisplayName=EternalScape
 AppVersion=${project.version}
 AppSupportURL=https://boom-scape.com/
-DefaultDirName={localappdata}\BoomScape
+DefaultDirName={localappdata}\EternalScape
 
 ; ~30 mb for the repo the launcher downloads
 ExtraDiskSpaceRequired=30000000
@@ -13,40 +13,40 @@ PrivilegesRequired=lowest
 
 WizardSmallImageFile=${basedir}/innosetup/runelite_small.bmp
 SetupIconFile=${basedir}/runelite.ico
-UninstallDisplayIcon={app}\BoomScape.exe
+UninstallDisplayIcon={app}\EternalScape.exe
 
 Compression=lzma2
 SolidCompression=yes
 
 OutputDir=${basedir}
-OutputBaseFilename=BoomScapeSetup
+OutputBaseFilename=EternalScapeSetup
 
 [Tasks]
 Name: DesktopIcon; Description: "Create a &desktop icon";
 
 [Files]
-Source: "${basedir}\build\win-x64\BoomScape.exe"; DestDir: "{app}"
-Source: "${basedir}\build\win-x64\BoomScape.jar"; DestDir: "{app}"
+Source: "${basedir}\build\win-x64\EternalScape.exe"; DestDir: "{app}"
+Source: "${basedir}\build\win-x64\EternalScape.jar"; DestDir: "{app}"
 Source: "${basedir}\build\win-x64\launcher_amd64.dll"; DestDir: "{app}"
 Source: "${basedir}\build\win-x64\config.json"; DestDir: "{app}"
 Source: "${basedir}\build\win-x64\jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs
 
 [Icons]
 ; start menu
-Name: "{userprograms}\BoomScape\BoomScape"; Filename: "{app}\BoomScape.exe"
-Name: "{userprograms}\BoomScape\BoomScape (configure)"; Filename: "{app}\BoomScape.exe"; Parameters: "--configure"
-Name: "{userprograms}\BoomScape\BoomScape (safe mode)"; Filename: "{app}\BoomScape.exe"; Parameters: "--safe-mode"
-Name: "{userdesktop}\BoomScape"; Filename: "{app}\BoomScape.exe"; Tasks: DesktopIcon
+Name: "{userprograms}\EternalScape\EternalScape"; Filename: "{app}\EternalScape.exe"
+Name: "{userprograms}\EternalScape\EternalScape (configure)"; Filename: "{app}\EternalScape.exe"; Parameters: "--configure"
+Name: "{userprograms}\EternalScape\EternalScape (safe mode)"; Filename: "{app}\EternalScape.exe"; Parameters: "--safe-mode"
+Name: "{userdesktop}\EternalScape"; Filename: "{app}\EternalScape.exe"; Tasks: DesktopIcon
 
 [Run]
-Filename: "{app}\BoomScape.exe"; Parameters: "--postinstall"; Flags: nowait
-Filename: "{app}\BoomScape.exe"; Description: "&Open BoomScape"; Flags: postinstall skipifsilent nowait
+Filename: "{app}\EternalScape.exe"; Parameters: "--postinstall"; Flags: nowait
+Filename: "{app}\EternalScape.exe"; Description: "&Open EternalScape"; Flags: postinstall skipifsilent nowait
 
 [InstallDelete]
 ; Delete the old jvm so it doesn't try to load old stuff with the new vm and crash
 Type: filesandordirs; Name: "{app}\jre"
 ; previous shortcut
-Type: files; Name: "{userprograms}\BoomScape.lnk"
+Type: files; Name: "{userprograms}\EternalScape.lnk"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{%USERPROFILE}\.runelite\repository2"

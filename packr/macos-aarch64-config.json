@@ -1,6 +1,6 @@
 {
   "classPath": [
-    "BoomScape.jar"
+    "EternalScape.jar"
   ],
   "mainClass": "net.runelite.launcher.Launcher",
   "vmArgs": [

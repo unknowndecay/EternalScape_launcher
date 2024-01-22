@@ -65,7 +65,7 @@ public class ConfigurationFrame extends JFrame
 
 	private ConfigurationFrame(LauncherSettings settings)
 	{
-		setTitle("BoomScape Launcher Configuration");
+		setTitle("EternalScape Launcher Configuration");
 
 		BufferedImage logo;
 		try (var in = SplashScreen.class.getResourceAsStream("runelite_transparent.png"))

@@ -11,9 +11,9 @@ BEGIN
     BEGIN
         BLOCK "040904B0"
         BEGIN
-            VALUE "FileDescription",  "BoomScape"
-            VALUE "OriginalFilename", "BoomScape.exe"
-            VALUE "ProductName",      "BoomScape Launcher"
+            VALUE "FileDescription",  "EternalScape"
+            VALUE "OriginalFilename", "EternalScape.exe"
+            VALUE "ProductName",      "EternalScape Launcher"
         END
     END
 
