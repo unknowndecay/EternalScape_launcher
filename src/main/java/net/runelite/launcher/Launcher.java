@@ -500,8 +500,8 @@ public class Launcher
 		{
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("Your launcher is too old to start EternalScape. Please download and install a more " +
-					"recent one from Boom-Scape.com.")
-					.addButton("Boom-Scape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
+					"recent one from eternalscape.com.")
+					.addButton("eternalscape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
 					.open());
 			return true;
 		}
@@ -509,9 +509,9 @@ public class Launcher
 		{
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("Your Java installation is too old. EternalScape now requires Java " +
-					bootstrap.getRequiredJVMVersion() + " to run. You can get a platform specific version from Boom-Scape.com," +
+					bootstrap.getRequiredJVMVersion() + " to run. You can get a platform specific version from eternalscape.com," +
 					" or install a newer version of Java.")
-					.addButton("Boom-Scape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
+					.addButton("eternalscape.com", () -> LinkBrowser.browse(LauncherProperties.getDownloadLink()))
 					.open());
 			return true;
 		}

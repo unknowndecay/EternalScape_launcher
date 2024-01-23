@@ -3,7 +3,7 @@ AppName=EternalScape Launcher
 AppPublisher=EternalScape
 UninstallDisplayName=EternalScape
 AppVersion=${project.version}
-AppSupportURL=https://boom-scape.com/
+AppSupportURL=https://eternalscape.com/
 DefaultDirName={localappdata}\EternalScape
 
 ; ~30 mb for the repo the launcher downloads
